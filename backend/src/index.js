@@ -18,21 +18,23 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
-}),
-);
+}));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 
-if(process.env.NODE_ENV==="production"){
-    app.use(express.static(path.join(__dirname,"../frontend/dist")));
+if (process.env.NODE_ENV === "production") {
+  const frontendPath = path.join(__dirname, "../frontend/dist");
 
-    app.get("/*", (req, res) => {
-  res.sendFile(path.resolve("frontend", "dist", "index.html"));
-});
-    
+  app.use(express.static(frontendPath));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
 }
+
 
 
 server.listen(PORT,()=>{
