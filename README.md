@@ -93,7 +93,7 @@ For production, set these in your hosting dashboard.
 
 🧑‍💻 Running Locally
 1️⃣ Clone the repository
-git clone https://github.com/yourusername/fullstack-chat-application.git
+git clone https://github.com/khushal108/fullstack-chat-application.git
 cd fullstack-chat-application
 2️⃣ Install Backend Dependencies
 cd backend
